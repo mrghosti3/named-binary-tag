@@ -67,7 +67,7 @@ use serde::{ Serialize, Deserialize };
 /// Possible types of tags and they payload.
 #[derive(Debug, Clone, PartialEq)]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[cfg_attr(feature = "serde", serde(tag = "type", content = "c"))]
+#[cfg_attr(feature = "serde", serde(tag = "type", content = "inner"))]
 pub enum Tag {
     Byte(i8),
     Short(i16),

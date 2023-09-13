@@ -310,43 +310,59 @@ fn test_serde() {
     ]
     .into_iter()
     .collect();
+    dbg!(&root_tag);
 
-    assert_tokens(&root_tag, &[
-        Token::Struct { name: "CompoundTag", len: 2 },
-        Token::Str("name"),
-        Token::None,
+    assert_tokens(
+        &root_tag,
+        &[
+            Token::Struct {
+                name: "CompoundTag",
+                len: 2,
+            },
+            Token::Str("name"),
+            Token::None,
 
-        Token::Str("tags"),
-        Token::Map { len: Some(3) },
+            Token::Str("tags"),
+            Token::Map { len: Some(3) },
 
-        Token::String("test1"),
-        Token::Struct { name: "Tag", len: 2 },
-        Token::Str("type"),
-        Token::Str("Int"),
+            Token::String("test1"),
+            Token::Struct {
+                name: "Tag",
+                len: 2,
+            },
+            Token::Str("type"),
+            Token::UnitVariant { name: "Tag", variant: "Int" },
 
-        Token::Str("c"),
-        Token::I32(1),
-        Token::StructEnd,
+            Token::Str("inner"),
+            Token::I32(1),
+            Token::StructEnd,
 
-        Token::String("test2"),
-        Token::Struct { name: "Tag", len: 2 },
-        Token::Str("type"),
-        Token::Str("Int"),
+            Token::String("test2"),
+            Token::Struct {
+                name: "Tag",
+                len: 2,
+            },
+            Token::Str("type"),
+            Token::UnitVariant { name: "Tag", variant: "Int" },
 
-        Token::Str("c"),
-        Token::I32(2),
-        Token::StructEnd,
+            Token::Str("inner"),
+            Token::I32(2),
+            Token::StructEnd,
 
-        Token::String("test3"),
-        Token::Struct { name: "Tag", len: 2 },
-        Token::Str("type"),
-        Token::Str("Int"),
+            Token::String("test3"),
+            Token::Struct {
+                name: "Tag",
+                len: 2,
+            },
+            Token::Str("type"),
+            Token::UnitVariant { name: "Tag", variant: "Int" },
+            Token::Str("inner"),
+            Token::I32(3),
+            Token::StructEnd,
 
-        Token::Str("c"),
-        Token::I32(3),
-        Token::StructEnd,
+            Token::MapEnd,
 
-        Token::MapEnd,
-        Token::StructEnd,
-    ])
+            Token::StructEnd,
+        ],
+    )
 }
