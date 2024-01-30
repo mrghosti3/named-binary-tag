@@ -487,6 +487,10 @@ impl CompoundTag {
         Ok(vec)
     }
 
+    pub fn len(&self) -> usize {
+        self.tags.len()
+    }
+
     pub fn iter(&self) -> impl DoubleEndedIterator<Item = (&String, &Tag)> {
         self.tags.iter()
     }
